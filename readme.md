@@ -121,9 +121,9 @@ HZ-1050 | Level Shifter | TinyPICO (ESP32)
 ------- | ------------- | ----------------
 VCC     | HV            | 5V
 GND     | GND           | GND
--       | LV            | 3V3
-TXD     | H0            | -
--       | L0            | 4 (RX)
+\-      | LV            | 3V3
+TXD     | H0            | \-
+\-      | L0            | 4 (RX)
 
 
 ## Links
