@@ -36,8 +36,6 @@ Wiegand W26 differs to W34 in that it only has a 1 byte facility code.
 from machine import UART
 uart1 = UART(1, baudrate=9600, tx=14, rx=4)
 
-import struct
-
 # callback to run on detection
 def cb(code, facility, card):
 	print('Code: {}, Facility: {}, Card: {}'.format(code, facility, card))
@@ -48,7 +46,7 @@ def uart_demo(callback):
 	while True:
 		if uart1.any():
 			uart1.readinto(buf)
-			code = struct.unpack('>i',buf)[0]
+			code = (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3]
 			facility = code >> 16
 			card = code & 0xFFFF
 			callback(code, facility, card)
